@@ -1,0 +1,16 @@
+{
+  "name": "virtualstockplatform",
+  "version": "1.0.0",
+  "description": "This platform helps users learn about stock trading without the financial risk, making it ideal for beginners. eal-time stock market data, simulate trading environments, and provide analytics and insights.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
