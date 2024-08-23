@@ -1,55 +1,19 @@
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-interface StockData {
-    dates: string[];
-    prices: number[];
-}
+// Your chart setup code here
+const ctx = document.getElementById('myChart') as HTMLCanvasElement;
 
-async function fetchTeslaStockData(): Promise<StockData> {
-    try {
-        const response = await fetch('/api/tesla-stock'); // Your API endpoint
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching stock data:", error);
-        return { dates: [], prices: [] };
-    }
-}
-
-async function createChart() {
-    const stockData = await fetchTeslaStockData();
-
-    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-    if (ctx && stockData.dates.length > 0) {
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: stockData.dates,
-                datasets: [{
-                    label: 'Tesla Stock Price',
-                    data: stockData.prices,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 2,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'day'
-                        }
-                    },
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
-    }
-}
-
-// Call the createChart function on page load
-createChart();
+const myChart = new Chart(ctx, {
+    type: 'line', // or bar, pie, etc.
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Tesla Stock Prices',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    },
+});
